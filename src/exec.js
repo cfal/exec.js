@@ -15,6 +15,14 @@ var nextColor = (function() {
     };
 })();
 
+var basename = function(s) {
+    var tmp = s.split('/')
+    tmp = tmp[tmp.length - 1];
+    tmp = tmp.split('\\')
+    tmp = tmp[tmp.length - 1]
+    return tmp;
+};
+
 var exec = function(opts) {
     if (typeof opts === 'string') {
         opts = {
@@ -29,7 +37,7 @@ var exec = function(opts) {
     command = tokens[0];
     args = tokens.slice(1).concat(args);
 
-    var tag = opts.tag || command;
+    var tag = opts.tag || basename(command);
     var print = (function() {
         if (opts.print) {
             // User defined print function
