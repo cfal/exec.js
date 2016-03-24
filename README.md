@@ -2,5 +2,5 @@
 
 Easily spawn multiple processes and stream their output
 
-![Screenshot](raw/master/screenshot.png)
+![Screenshot](/cfal/exec.js/raw/master/screenshot.png?raw=true)
 
