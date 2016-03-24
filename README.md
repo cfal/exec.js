@@ -23,15 +23,15 @@ exec({
 // Spawn a new process running 'daemon3', passing an object
 // Save a reference to the ChildProcess object (see node child_process api)
 proc = exec({
-  command: 'daemon2'
+  command: 'daemon3'
   args: ['--bind', '3.3.3.3'] // Pass arguments seperately
   print: function(line, type, tag) { // Use a custom print function
     if (type == 'stdout') {
-      console.log('d2 says (stdout): ' + line);
+      console.log('d3 says (stdout): ' + line);
     } else if (type == 'stderr') {
-      console.log('d2 says (stderr): ' + line);
+      console.log('d3 says (stderr): ' + line);
     } else if (type == 'info') {
-      console.log('d2 info: ' + line);
+      console.log('d3 info: ' + line);
     }
   }
 });
