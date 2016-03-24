@@ -47,6 +47,8 @@ proc.kill();
 
 Spawn a process from the provided command
 
+Returns: [ChildProcess](https://nodejs.org/api/child_process.html#child_process_class_childprocess) object
+
 ### exec(options)
 
 Spawn a process from the provided options object, with the following supported keys:
@@ -60,5 +62,4 @@ Spawn a process from the provided options object, with the following supported k
   - tag (String): The tag for the process (provided or inferred from command)
 - All options supported by child_process.spawn (See [child_process](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options))
 
-
-
+Returns: [ChildProcess](https://nodejs.org/api/child_process.html#child_process_class_childprocess) object
