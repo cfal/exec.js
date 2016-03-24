@@ -33,23 +33,31 @@ var exec = function(opts) {
     var print = (function() {
         if (opts.print) {
             // User defined print function
-            return function(s, fd) {
-                opts.print(s, tag, fd);
+            return function(s, type) {
+                opts.print(s, tag, type);
             };
         } else {
             while (tag.length < 20) tag += ' ';
             tag = (colors[opts.color] || colors[nextColor()])(tag);
-            return function(s, fd) {
-                if (fd === 'stderr') s = colors.red(s);
+            return function(s, type) {
+                if (type === 'stderr') s = colors.red(s);
+                else if (type == 'info') s = colors.green(s);
                 console.log(tag + ' ' + s);
             };
         }
     })();
 
-    var proc = child_process.spawn(command, args);
+    var spawnOptions = {};
+    for (var key in opts) {
+        if (key in ['command', 'args', 'tag', 'print']) {
+            continue;
+        }
+        spawnOptions[key] = opts[key];
+    }
+    
+    var proc = child_process.spawn(command, args, spawnOptions);
 
     var stdout = '';
-    var stderr = '';
     proc.stdout.on('data', function(data) {
         stdout += data.toString();
         var i, line;
@@ -60,6 +68,7 @@ var exec = function(opts) {
         }
     });
 
+    var stderr = '';
     proc.stderr.on('data', function(data) {
         stderr += data.toString();
         var i, line;
@@ -71,7 +80,7 @@ var exec = function(opts) {
     });
 
     proc.on('close', function(code) {
-        print('* Process exit (code: ' + code + ')');
+        print('* Process exit (code: ' + code + ')', 'info');
     });
 
     return proc;
