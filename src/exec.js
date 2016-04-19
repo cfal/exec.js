@@ -42,7 +42,7 @@ var exec = function(opts) {
         if (opts.print) {
             // User defined print function
             return function(s, type) {
-                opts.print(s, tag, type);
+                opts.print(s, type, tag);
             };
         } else {
             while (tag.length < 20) tag += ' ';

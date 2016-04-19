@@ -1,6 +1,6 @@
 {
   "name": "execjs",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Easily spawn multiple processes and stream their output",
   "author": "Alex Lau",
   "license": "MIT",
